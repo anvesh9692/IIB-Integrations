@@ -11,8 +11,6 @@ CREATE COMPUTE MODULE MF_ORG_ADD_EMPLOYEE_DETAILS
 		--Send error if employee details are already available in DB
 		IF EXISTS(Environment.Variables.CheckIfEmployeeExists.EMPLOYEE_ID[]) THEN
 			THROW USER EXCEPTION MESSAGE 1001 VALUES ('Employee details are already registered - ' || InRef.EMPLOYEE_ID);
-			--SET OutputRoot.HTTPReplyHeader."X-Original-HTTP-Status-Code" = 400;
-			--SET OutputRoot.XMLNSC.EmployeeDetails = 'Employee details are already registered - '|| COALESCE(Environment.Variables.EmployeeDetails.EMPLOYEE_NAME,Environment.Variables.CheckIfEmployeeExists.EMPLOYEE_ID) ;
 		--Insert employee details to DB if all the mandatory fields are available in input message
 		ELSEIF (EXISTS(Environment.Variables.EmployeeDetails.EMPLOYEE_ID[]) AND 
 			   EXISTS(Environment.Variables.EmployeeDetails.EMPLOYEE_NAME[]) AND 
