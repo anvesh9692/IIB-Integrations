@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="jenkins-build" default="build">
 	<property file="build.properties"/>
-	<property name="datadir" value="../../" />
+	<property name="datadir" value="Build/" />
 	
 	<target name="build">
 		<echo message="Building Bar.." />
-		<exec executable="${iib.toolkit}/mqsicreatebar">
+		<exec executable="${iib.toolkit}/mqsicreatebar.exe">
 			<arg value="-data" />
 			<arg value="${datadir}" />
 			<arg value="-b" />
-			<arg value="${bar.name}" />
+			<arg value="Build/${bar.name}" />
 			<arg value="-a" />
 			<arg value="${appname}" />
-			<arg value="-deployAsSource" />
+			<arg value="-deployAsSource" />	
 		</exec>
 		<echo message="Bar Builded.." />
 		<echo message="Applying Bar overrides.." />
 		<exec executable="baroverride.bat">
-			<arg value="${bar.name}" />
+			<arg value="Build/${bar.name}" />
 			<arg value="${properties}" />
 		</exec>
 		<echo message="Bar Overriden.." />
@@ -25,7 +25,7 @@
 		<exec executable="deploycmd.bat">
 			<arg value="${iib.broker}" />
 			<arg value="${iib.server}" />
-			<arg value="${bar.name}" />
+			<arg value="Build/${bar.name}" />
 		</exec>
 		<echo message="Bar File Deployed.." />
 	</target>
