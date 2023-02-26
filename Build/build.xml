@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <project name="project" default="run">
   <target name="run" description="">
-    <property name="toolkit.home" value="C:\Program Files\IBM\ACE\12.0.5.0\server\bin" />
-    <property name="ant.bars.basedir" value="C:\Archive" />
-    <property name="bar.name" value="${ant.bars.basedir}\BAR_APP_EMPLOYEE_DETAILS.bar" />
-    <property name="workspace.dir" value="C:\Users\Admin\AppData\Local\Jenkins\.jenkins\workspace\IIB-Deployments" />
+    <property name="toolkit.home" value="C:/Program Files/IBM/ACE/12.0.5.0/server/bin" />
+    <property name="ant.bars.basedir" value="C:/Archive" />
+    <property name="bar.name" value="${ant.bars.basedir}/BAR_APP_EMPLOYEE_DETAILS.bar" />
+    <property name="workspace.dir" value="C:/Users/Admin/AppData/Local/Jenkins/.jenkins/workspace/IIB-Deployments" />
     <antcall target="build" />
   </target>
   <target name="build">
      <echo message="Building the Message Broker Project @ ${workspace.dir}" />
       <echo message="Output ${bar.name}" />
-     <exec executable="${toolkit.home}\mqsideploy.exe" spawn="false" failonerror="true">
+     <exec executable="${toolkit.home}/mqsideploy.exe" spawn="false" failonerror="true">
        <arg value="${iib.broker}" />
 		<arg value="-e" />
 		<arg value="${iib.server}" />
