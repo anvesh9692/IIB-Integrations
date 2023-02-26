@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="project" default="run">
   <target name="run" description="">
-    <property name="toolkit.home" value="C:\Program Files\IBM\ACE\12.0.5.0\tools" />
+    <property name="toolkit.home" value="C:\Program Files\IBM\ACE\12.0.5.0\server\bin" />
     <property name="ant.bars.basedir" value="C:\Archive" />
     <property name="bar.name" value="${ant.bars.basedir}\BAR_APP_EMPLOYEE_DETAILS.bar" />
     <property name="workspace.dir" value="C:\Users\Admin\AppData\Local\Jenkins\.jenkins\workspace\IIB-Deployments" />
@@ -10,18 +10,14 @@
   <target name="build">
      <echo message="Building the Message Broker Project @ ${workspace.dir}" />
       <echo message="Output ${bar.name}" />
-     <exec executable="${toolkit.home}\mqsicreatebar.exe" spawn="false" failonerror="true">
-       <arg value="-data" />
-            <arg value="${workspace.dir}" /> 
-        <arg value="-b" />
-            <arg value="${bar.name}" />
-        <!-- List all the message flow projects -->
-        <arg value="-a" />
-            <arg value="APP_EMPLOYEE_DETAILS" />
-
-        <arg value="-skipWSErrorCheck" />
-             <arg value="" />          
-
+     <exec executable="${toolkit.home}\mqsideploy.exe" spawn="false" failonerror="true">
+       <arg value="${iib.broker}" />
+		<arg value="-e" />
+		<arg value="${iib.server}" />
+		<arg value="-a" />
+		<arg value="Build/${barname}" />
+		<arg value="-w" />
+        <arg value="180" />         
      </exec>
   </target>
 </project>
