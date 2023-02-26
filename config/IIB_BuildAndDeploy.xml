@@ -61,7 +61,7 @@
   
   <!-- Loading the property files -->
   <property file="config/flow_eg_mapper.properties" prefix="flow_eg_mapper." />
-  <propertyselector property="flow_eg_mapper" match="flow_eg_mapper\.(.*)" select="\1" />
+  <!--<propertyselector property="flow_eg_mapper" match="flow_eg_mapper\.(.*)" select="\1" />-->
   <loadproperties srcFile="config/flow_eg_mapper.properties" />
   
   <property file="config/deploy_flags.properties" />
