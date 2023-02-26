@@ -1,27 +1,16 @@
 <?xml version="1.0"?>
 <project name="project" default="run">
-  <target name="run" description="">
-    <property name="toolkit.home" value="C:\Program Files\IBM\ACE\12.0.5.0\tools" />
-    <property name="ant.bars.basedir" value="C:\Archive" />
-    <property name="bar.name" value="${ant.bars.basedir}\BAR_APP_EMPLOYEE_DETAILS.bar" />
-    <property name="workspace.dir" value="D:\Work\ACE12\Work" />
-    <antcall target="build" />
-  </target>
-  <target name="build">
-     <echo message="Building the ACE Project @ ${workspace.dir}" />
-      <echo message="Output ${bar.name}" />
-     <exec executable="${toolkit.home}\mqsicreatebar.exe" spawn="false">
-        <!-- <arg value="-data" />
-            <arg value="${workspace.dir}" /> -->
-        <arg value="-b" />
-            <arg value="${bar.name}" />
-        <!-- List all the message flow projects -->
-        <arg value="-a" />
-            <arg value="App_Get_Employee_Details" />
-
-        <arg value="-skipWSErrorCheck" />
-             <arg value="" />          
-
-     </exec>
-  </target>
+	<target name="run_mqsipackagebar" description="--> runs mqsipackagebar from an ant task">
+	<property name="workspace.dir" value="C:/Program Files/IBM/ACE/12.0.5.0" />
+	<java classname="com.ibm.broker.config.appdev.FlowRendererBAR"
+      failonerror="true"
+      fork="true">
+         <arg line="-a MyBAR.bar"/>
+         <arg line="-k APP_EMPLOYEE_DETAILS"/>
+         <classpath>
+            <fileset dir="${workspace.dir}/common/classes" includes="IntegrationAPI.jar" /> 
+            <fileset dir="${workspace.dir}/server/classes" includes="javacompute.jar,jplugin2.jar" /> 
+         </classpath>
+	</java>
+	</target>
 </project>
