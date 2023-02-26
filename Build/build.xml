@@ -1,16 +1,27 @@
 <?xml version="1.0"?>
-<project name="project" default="run_mqsipackagebar">
-	<target name="run_mqsipackagebar" description="--> runs mqsipackagebar from an ant task">
-	<property name="workspace.dir" value="C:/Program Files/IBM/ACE/12.0.5.0" />
-	<java classname="com.ibm.broker.config.appdev.FlowRendererBAR"
-      failonerror="true"
-      fork="true">
-         <arg line="-a MyBAR.bar"/>
-         <arg line="-k APP_EMPLOYEE_DETAILS"/>
-         <classpath>
-            <fileset dir="${workspace.dir}/common/classes" includes="IntegrationAPI.jar" /> 
-            <fileset dir="${workspace.dir}/server/classes" includes="javacompute.jar,jplugin2.jar" /> 
-         </classpath>
-	</java>
-	</target>
+<project name="project" default="run">
+  <target name="run" description="">
+    <property name="toolkit.home" value="C:\Program Files\IBM\ACE\12.0.5.0\tools" />
+    <property name="ant.bars.basedir" value="C:\Archive" />
+    <property name="bar.name" value="${ant.bars.basedir}\BAR_APP_EMPLOYEE_DETAILS.bar" />
+    <property name="workspace.dir" value="C:\Users\Admin\AppData\Local\Jenkins\.jenkins\workspace\IIB-Deployments" />
+    <antcall target="build" />
+  </target>
+  <target name="build">
+     <echo message="Building the Message Broker Project @ ${workspace.dir}" />
+      <echo message="Output ${bar.name}" />
+     <exec executable="${toolkit.home}\mqsicreatebar.exe" spawn="false" failonerror="true">
+       <arg value="-data" />
+            <arg value="${workspace.dir}" /> 
+        <arg value="-b" />
+            <arg value="${bar.name}" />
+        <!-- List all the message flow projects -->
+        <arg value="-a" />
+            <arg value="APP_EMPLOYEE_DETAILS" />
+
+        <arg value="-skipWSErrorCheck" />
+             <arg value="" />          
+
+     </exec>
+  </target>
 </project>
