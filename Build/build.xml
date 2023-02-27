@@ -5,12 +5,12 @@
     <property name="bars.basedir" value="C:/Archive" />
     <property name="bar.location" value="${bars.basedir}/BAR_APP_EMPLOYEE_DETAILS.bar" />
     <property name="workspace.dir" value="C:/Users/Admin/AppData/Local/Jenkins/.jenkins/workspace/IIB-Deployments" />
-	<property name="application.name" value="APP_EMPLOYEE_DETAILS" />
+	<property name="application.name" value="App_Get_Employee_Details" />
     <antcall target="build" />
   </target>
   <target name="build">
      <echo message="Building the Message Broker Project @ ${workspace.dir}" />
-      <echo message="Output ${bar.name}" />
+      <echo message="Output ${bar.location}" />
      <exec executable="${iib.createbar}/mqsicreatebar.exe" spawn="false" failonerror="true">
        	<arg value="-data" />
 		<arg value="${workspace.dir}" />
