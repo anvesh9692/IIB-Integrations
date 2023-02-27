@@ -11,7 +11,7 @@
   <target name="build">
      <echo message="Building the Message Broker Project @ ${workspace.dir}" />
       <echo message="Output ${bar.location}" />
-     <exec executable="${iib.createbar}/mqsicreatebar.exe" spawn="false" failonerror="true">
+     <exec executable="${iib.createbar}/mqsicreatebar" spawn="false" failonerror="true">
        	<arg value="-data" />
 		<arg value="${workspace.dir}" />
 		<arg value="-b" />
