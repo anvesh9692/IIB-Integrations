@@ -17,7 +17,8 @@
 		<arg value="-b" />
 		<arg value="${bar.location}" />
 		<arg value="-a" />
-        <arg value="${application.name}" />         
+        <arg value="${application.name}" /> 
+		<arg value="-deployAsSource" />
      </exec>
   </target>
 </project>
